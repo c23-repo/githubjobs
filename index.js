@@ -20,6 +20,9 @@ const { getJobs } = require("./Services");
 
 // GET /jobs
 server.get("/jobs", (req, res) => {
+  if (req.query !== req.query.tech) {
+    res.send("not a valid endpoint. set to tech query");
+  }
   const { tech } = req.query;
   getJobs(tech).then((jobs) => res.send(jobs));
   console.log("success");
